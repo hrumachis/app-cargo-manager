@@ -40,7 +40,7 @@ Project generated using `create-react-app --typescript`
     	    react-dnd
         }
 
-**Missing implematations:**
+**Missing implementations:**
 Prototype still needs api requeasts handler, currently only GetInitData requeast handled.
 Missing create & add funcionality.
 
