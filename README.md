@@ -22,7 +22,7 @@ Project started Apr 26, 2019 and finished May 1, 2019 Total hours: **~30**
  - **5 hours** - Ships, Dock, ShipComponent structure, layout, style, basic
    functions setup.
  - **7 hours** - Drag&Drop  implementations.
- - **8 hours** - Connecting redux, dnd, components, api functions
+ - **8 hours** - Connecting redux, dnd, components functionality
  - **1 hours** - Api GetInit handler.
  - **2 hours** - Drag&Drop, components handling conditions.
 
