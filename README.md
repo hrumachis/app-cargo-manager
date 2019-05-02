@@ -1,44 +1,56 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**<big>Cargo Manager</big>**
+TypeScript based web application using react.js framework combined with redux and react dnd libraries*
 
-## Available Scripts
+**Goals:**
 
-In the project directory, you can run:
+ - User should be able to create/edit cargo items in dock.
+ - User should be able to specify area and weight for cargo item
+   (edit/create).
+ - User should be able to drag cargo items between dock and multiple
+   ships (react-dnd library).
+ - Prevent dropping cargo items if ship reached maximum capacity.
+ - Calculate and display total weight and area of cargo items loaded to
+   the ship.
+ - Calculate and display load percentage (weight and area) of the ship.
 
-### `npm start`
+**Project Hours**
+Project started Apr 26, 2019 and finished May 1, 2019 Total hours: **~30**
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+ - **3 hours** - Environment setup.
+ - **1 hours** - HTML layout, SCSS setup.
+ - **3 hours** - Redux structure.
+ - **5 hours** - Ships, Dock, ShipComponent structure, layout, style, basic
+   functions setup.
+ - **7 hours** - Drag&Drop  implementations.
+ - **8 hours** - Connecting redux, dnd, components, api functions
+ - **1 hours** - Api GetInit handler.
+ - **2 hours** - Drag&Drop, components handling conditions.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Project generated using `create-react-app --typescript`
 
-### `npm test`
+**Used modules:**
+   
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+     {
+    	    node-sass,
+    	    redux, @type/redux,
+    	    redux-thunk,
+    	    react-redux,
+    	    typescript,
+    	    react-dnd
+        }
 
-### `npm run build`
+**Missing implematations:**
+Prototype still needs api requeasts handler, currently only GetInitData requeast handled.
+Missing create & add funcionality.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+**Ideas for the future:**
+Application has good starting structure and functionality foundation. Still there is areas to improve:
+ - Selected ship max volume, weight display need location adjustments.
+ - Additional drag method from selected ship to ship in list.
+ - Cargo item details - can be simplified.
+ - Hovered drag item container effects - can be simplified.
+ - Remove multiple loading indicators and have one single. Use data placeholder in places where multiple loading indicators were used.
+ - 
+**Testing framework**
+The project provides its own proprietary testing, however, is suitable for unit cause it uses react-redux library. No unit taste made because of time lack.
