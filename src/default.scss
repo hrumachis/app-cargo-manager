@@ -1,0 +1,190 @@
+@import 'variables';
+
+html, body, #root {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background-color: $body-bg;
+    color: $col-font-basic;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    /* font-smoothing */ -webkit-font-smoothing: antialiased;
+    margin: 0;
+    padding: 0;
+    /* osx-font-smoothing */ -moz-osx-font-smoothing: grayscale;
+    /* tap-highlight-color */ -webkit-tap-highlight-color: transparent;
+    text-align: left;
+    text-rendering: optimizeLegibility;
+    /* touch-callout */ -webkit-touch-callout: none;
+    user-select: none;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+// ----------------------> Button ---------------------- //
+button {
+    background-color: white;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0px 2px 5px -2px rgba( 0, 0, 0, .2 );
+    cursor: pointer;
+    outline: none;
+    opacity: .8;
+    padding: 8px;
+
+    > img {
+        display: block;
+        fill: red;
+        height: 26px;
+        width: 26px;
+    }
+
+    &:hover {
+        opacity: 1;
+        transition: opacity .2s ease-out;
+    }
+}
+
+// ----------------------> Opacity ---------------------- //
+.opacity\%0 { opacity: 0; }
+.opacity\%10 { opacity: .1; }
+.opacity\%20 { opacity: .2; }
+.opacity\%30 { opacity: .3; }
+.opacity\%40 { opacity: .4; }
+.opacity\%50 { opacity: .5; }
+.opacity\%60 { opacity: .6; }
+.opacity\%70 { opacity: .7; } 
+.opacity\%80 { opacity: .8; }
+.opacity\%90 { opacity: .9; }
+
+// ----------------------> Text ---------------------- //
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+// Size
+.text\%h0 { font-size: $font-size-h0; }
+.text\%h1 { font-size: $font-size-h1; }
+.text\%h2 { font-size: $font-size-h2; }
+.text\%h3 { font-size: $font-size-h3; }
+.text\%h4 { font-size: $font-size-h4; }
+.text\%h5 { font-size: $font-size-h5; }
+.text\%h6 { font-size: $font-size-h6; }
+.text\%h7 { font-size: $font-size-h7; }
+.text\%h8 { font-size: $font-size-h8; }
+
+.text-weight\%700 { font-weight: 700; }
+.text-weight\%400 { font-weight: 400; }
+.text-weight\%100 { font-weight: 100; }
+
+// ----------------------> Grid ---------------------- //
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+// ----------------------> Color ---------------------- //
+.col-primary { color: $col-primary; }
+.col-dark { color: #666; }
+.col-font-basic { color: $col-font-basic; }
+
+// ----------------------> Height ---------------------- //
+.vh-full { height: 100%; }
+.vh-half { height: 50%; }
+
+// ----------------------> Width ---------------------- //
+.vw-full { width: 100%; }
+.vw-1-2 { width: 50%; }
+
+// ----------------------> Padding ---------------------- //
+.pad-large { padding: scaling( $pad-large ); }
+
+// ----------------------> Margin ---------------------- //
+.marg-top\%b { margin-top: $pad-big; }
+.marg-top { margin-top: $pad-normal; }
+.marg-top\%s { margin-top: $pad-small; }
+.marg-top\%xs { margin-top: $pad-xsmall; }
+.marg-left\%l { margin-left: $pad-large; }
+.marg-left\%b { margin-left: $pad-big; }
+.marg-left { margin-left: $pad-normal; }
+.marg-left\%s { margin-left: $pad-small; }
+.marg-bot\%l { margin-bottom: $pad-large; }
+.marg-bot\%b { margin-bottom: $pad-big; }
+.marg-bot { margin-bottom: $pad-normal; }
+.marg-bot\%s { margin-bottom: $pad-small; }
+.marg-right\%b { margin-right: $pad-big; }
+.marg-right { margin-right: $pad-normal; }
+.marg-right\%s { margin-right: $pad-small; }
+
+// ----------------------> Float ---------------------- //
+.float-right { float: right; }
+
+// ----------------------> Flex ---------------------- //
+.flex { display: flex; }
+.flex-center {
+    justify-content: center;
+}
+.flex-middle {
+    align-items: center;
+}
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-right {
+    margin-left: auto;
+    order: 2;
+}
+
+// ----------------------> Visibility ---------------------- //
+.hidden {
+    visibility: hidden;
+}
+
+// ----------------------> Position ---------------------- //
+[class*='pos-center'], [class*='pos-left']  { position: absolute; }
+
+.index\%1 { z-index: 1; }
+.index\%2 { z-index: 2; }
+.index\%3 { z-index: 3; }
+.index\%4 { z-index: 4; }
+.index\%5 { z-index: 5; }
+
+.pos-cover {
+    bottom: 0px;
+    left: 0px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+
+.pos-center {
+    left: 50%;
+    top: 50%;
+    transform: translate( -50%, -50% );
+}
+
+// ----------------------> Animation ---------------------- //
+.anime-fade-in {
+    animation: fade-in 1s forwards;
+}
+
+.anime-fade-in\%fast {
+    animation: fade-in .3s forwards;
+}
+
+@keyframes fade-in {
+    0% { opacity: 0; }
+    100% {  }
+}
+
+@keyframes spin {
+    0% { transform: rotate( 0deg ) }
+    100% { transform: rotate( 360deg ) }
+}

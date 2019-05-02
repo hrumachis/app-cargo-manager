@@ -1,0 +1,125 @@
+@import '../../variables';
+
+.app {
+    height: 100%;
+    position: relative;
+    text-align: center;
+    width: 100%;
+
+    &.isDragging {
+        cursor: grabbing !important;
+    }
+
+    header {
+        background-color: white;
+        height: 70px;
+        padding: 0 $pad-normal;
+    }
+
+    .brand-name {
+        font-size: $font-size-h5;
+        font-weight: 100;
+        text-transform: uppercase;
+    }
+
+    .loading {
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+
+        &::before {
+            animation: spin .6s infinite linear;
+            border: solid 2px $col-primary;
+            border-left-color: transparent;
+            border-radius: 100%;
+            content: '';
+            height: 20px;
+            left: 50%;
+            opacity: .4;
+            position: absolute;
+            top: 50%;
+            transform: translate( -50%, -50% );
+            width: 20px;
+        }
+    }
+
+    // ----------------------> Main classes ---------------------- //
+    $shipViewHeight: 300px;
+    $titleHeight: 60px;
+    
+    main {
+        display: flex;
+        height: calc( 100% - 70px );
+        position: relative;
+        text-align: right;
+        width: 100%;
+
+        .title {
+            align-items: center;
+            box-sizing: border-box;
+            color: rgba( 0, 0, 0, .3 );
+            display: flex;
+            font-size: 18px;
+            font-weight: 500;
+            height: $titleHeight;
+            padding: 0 10px 0 20px;
+            position: relative;
+            text-align: left;
+            width: 100%;
+            z-index: 10;
+        }
+    }
+
+    .scrollable {
+        box-sizing: border-box;
+        overflow: hidden;
+        overflow-y: auto;
+        padding: 0 $pad-normal;
+        position: relative;
+    }
+
+    .column-left {
+        border-right: solid 1px white;
+        height: 100%;
+        width: 65%;
+    }
+
+    .ship-view {
+        border-bottom: solid 1px white;
+        height: $shipViewHeight;
+        position: relative;
+
+        .scrollable {
+            align-content: flex-start;
+            align-items: flex-start;
+            display: flex;
+            flex-wrap: wrap;
+            height: $shipViewHeight - $titleHeight;
+        }
+    }
+
+    .dock {
+        height: calc( 100% - #{ $shipViewHeight } - 1px );
+        position: relative;
+
+        .scrollable {
+            align-content: flex-start;
+            align-items: flex-start;
+            display: flex;
+            flex-wrap: wrap;
+            height: calc( 100% - #{ $titleHeight } );
+        }
+    }
+
+    .ships {
+        height: 100%;
+        position: relative;
+        width: 35%;
+
+        .scrollable {
+            height: calc( 100% - #{ $titleHeight } );
+        }
+    }
+}

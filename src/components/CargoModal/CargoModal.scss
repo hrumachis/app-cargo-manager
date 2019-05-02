@@ -1,0 +1,37 @@
+@import '../../variables';
+
+.app-cargo-modal {
+    .bg {
+        background-color: rgba( 0, 0, 0, .4 );
+        bottom: 0;
+        left: 0;
+        opacity: 0;
+        pointer-events: none;
+        position: fixed;
+        right: 0;
+        top: 0;
+
+        &.open {
+            opacity: 1;
+            pointer-events: initial;
+            transition: opacity .5s ease-out;
+        }
+    }
+
+    .modal {
+        background-color: white;
+        left: 50%;
+        max-width: 100%;
+        padding: $pad-normal;
+        position: absolute;
+        top: 50%;
+        transform: translate( -50%, -50% );
+        width: 400px;
+    }
+
+    .title {
+        color: $col-font-basic !important;
+        font-size: 20px;
+        font-weight: 100;
+    }
+}

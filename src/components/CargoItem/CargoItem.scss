@@ -1,0 +1,67 @@
+@import '../../variables';
+
+$CargoCubeSize: 150px;
+
+.app-cargo-item, .cargo-item {
+    background-color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    height: $CargoCubeSize;
+    margin: 4px;
+    opacity: .7;
+    position: relative;
+    width: $CargoCubeSize;
+
+    &:hover {
+        opacity: 1;
+        transition: opacity .2s ease-out;
+    }
+
+    &.isDragged {
+        opacity: 0;
+        transition: opacity 0s;
+    }
+
+    .cargo {
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translate( -50%, -50% );
+        width: 100px;
+    }
+
+    .weight {
+        align-items: center;
+        display: flex;
+        color: $col-font-basic;
+        font-size: 16px;
+        font-weight: 100;
+        justify-content: center;
+        position: absolute;
+        text-align: center;
+        top: 75px;
+        width: 100%;
+
+        > img {
+            margin-right: 15px;
+            width: 16px;
+        }
+    }
+
+    .volume {
+        font-size: 36px;
+        font-weight: 100;
+        position: absolute;
+        text-align: center;
+        top: 18px;
+        width: 100%;
+    }
+
+    .marker {
+        bottom: 5px;
+        left: 50%;
+        position: absolute;
+        transform: translate( -50%, 0 ) rotate( 90deg );
+        width: 12px;
+    }
+}

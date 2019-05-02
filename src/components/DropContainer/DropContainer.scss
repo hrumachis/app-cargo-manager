@@ -1,0 +1,57 @@
+@import '../../variables';
+
+.app-drop-container {
+    background-color: rgba( 255, 255, 255, .4 );
+    border: dashed 1px rgba( 0, 0, 0, .2 );
+    bottom: 4px;
+    left: 4px;
+    opacity: 0;
+    position: absolute;
+    right: 4px;
+    top: 4px;
+
+    &.visible {
+        opacity: 1;
+        transition: opacity .2s ease-out;
+        z-index: 100;
+    }
+
+    &.active {
+        background-color: rgba( 255, 255, 255, .6 );
+        border-color: $col-primary;
+        transition: border-color .2s ease-out;
+
+        img.icon {
+            opacity: .5;
+        }
+    }
+
+    .error-message {
+        color: red;
+        font-size: 12px;
+        opacity: 0;
+        position: absolute;
+        right: $pad-small;
+        text-transform: uppercase;
+        top: $pad-small;
+    }
+
+    &.error {
+        background-color: rgba( 255, 255, 255, .6 );
+        border-color: red;
+        transition: border-color .2s ease-out;
+
+        .error-message {
+            opacity: .8;
+            transition: opacity 0.2s ease-out;
+        }
+    }
+
+    img.icon {
+        opacity: .3;
+        position: absolute;
+        right: $pad-small;
+        top: $pad-small;
+        width: 30px;
+    }
+}
