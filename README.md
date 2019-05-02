@@ -51,6 +51,6 @@ Application has good starting structure and functionality foundation. Still ther
  - Cargo item details - can be simplified.
  - Hovered drag item container effects - can be simplified.
  - Remove multiple loading indicators and have one single. Use data placeholder in places where multiple loading indicators were used.
- - 
+ 
 **Testing framework**
 The project provides its own proprietary testing, however, is suitable for unit cause it uses react-redux library. No unit taste made because of time lack.
