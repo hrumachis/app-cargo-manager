@@ -41,7 +41,7 @@ Project generated using `create-react-app --typescript`
         }
 
 **Missing implementations:**
-Prototype still needs api requeasts handler, currently only GetInitData requeast handled.
+Prototype still needs api requests handler, currently only GetInitData request handled.
 Missing create & add funcionality.
 
 **Ideas for the future:**
