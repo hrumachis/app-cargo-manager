@@ -36,7 +36,7 @@ interface AddCargoAction {
 export const REMOVE_SHIP_CARGO = 'REMOVE_SHIP_CARGO'
 interface RemoveCargoAction {
     type: typeof REMOVE_SHIP_CARGO
-    cargoId: string,
+    cargoId: number,
     shipId: string
 }
 

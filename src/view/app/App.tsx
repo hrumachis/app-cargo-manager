@@ -18,6 +18,7 @@ import SVG_add from '../../assets/add.svg';
 // Componenets
 import { AppShips, AppDock, AppShipContainer, AppDropContainer, AppCargoModal } from '../../components';
 import { Types as CargoTypes } from '../../components/CargoItem/types';
+import Api from '../../handlers/Api';
 
 export interface State {
     isReady: boolean
@@ -107,8 +108,12 @@ class App extends React.Component<ReduxProps, State> {
     }
 
     // -------------> Init ------------- //
+    private api: Api;
+
     constructor( props: ReduxProps ) {
         super( props );
+
+        this.api = new Api( props.userGuid );
 
         this.state = {
             isReady: false
@@ -116,7 +121,14 @@ class App extends React.Component<ReduxProps, State> {
     }
 
     componentDidMount() {
-        this.getInitData( this.props.userGuid );
+        this.api.getInitData( ( res: any ) => {
+            this.props.setShipList( res.ships );
+            this.props.setCargoItems( res.dock.cargoItems );
+
+            this.setState( {
+                isReady: true
+            } );
+        } );
     }
 
     // -------------> Getters & Setters ------------- //
@@ -233,80 +245,43 @@ class App extends React.Component<ReduxProps, State> {
         if ( cargoItem ) {
             this.props.removeShipCargo( this.props.activeShipId, item.id )
             this.props.addDockCargo( cargoItem )
+
+            this.addToDock( this.props.userGuid, cargoItem.id, () => {
+                if ( cargoItem && ship ) {
+                    this.props.removeDockCargo( cargoItem.id )
+                    this.props.addShipCargo( ship.id, cargoItem )
+                }
+            } );
         }
 
         this.props.setIsDragging( false );
     }
 
     // ---> Api requests
-    // Get init data
-    public async getInitData( userGuid: string ) {
-        const url = 'http://demos.dev.flinkefolk.lt/Home/GetInitData/userGuid=' + userGuid;
+    public async addToDock( userGuid: string, cargoId: number, errorCallback: CallableFunction ) {
+        const url = 'http://demos.dev.flinkefolk.lt/Home/AddToDock';
 
         let request = await fetch( url, {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify( {
-                'userGuid': userGuid
+                'userGuid': userGuid,
+                'cargoId': cargoId
             } )
         } );
 
         console.log ( request )
-        if ( request.ok )
-            request.json().then( res => {
-                console.log( res )
-
-                this.props.setShipList( res.ships );
-                this.props.setCargoItems( res.dock.cargoItems );
-
-                this.setState( {
-                    isReady: true
-                } );
-            } )
-        else {
+        if ( !request.ok ) {
             if ( request.status === 401 ) {
                 // Check API_KEY and try again
                 console.log( "Credentials error, checking API_KEY and trying again");
-                console.log( userGuid.length > 0  )
 
                 if ( userGuid.length > 0 )
-                    this.getInitData( userGuid );
+                    this.addToDock( userGuid, cargoId, errorCallback );
+            } else {
+                errorCallback();
             }
         }
-
-            /* GENERATE MOCK
-            
-            .then( res => res )
-            .then( ( result ) => {
-                    let res: any;
-
-                    // If server offline generate data
-                    if ( !result.ok )
-                        res = this.genInit();
-                    else
-                        res = result.json();
-
-                    // Connection timeout ~2s
-                    setTimeout( () => {
-                        if ( this.getRandInt( 0, 100 ) > 50 ) {
-                            console.log( "Connection failed" );
-
-                            // Try again
-                            this.getInitData( userGuid );
-                            return false;
-                        }
-
-                        this.props.setShipList( res.ships );
-                        this.props.setCargoItems( res.dock.cargoItems );
-
-                        this.setState( {
-                            isReady: true
-                        } );
-                    }, this.getRandInt( 1200, 3000 ) );
-                }, ( error ) => {
-                    // Try again
-                    this.getInitData( userGuid );
-            } );*/
     }
 
     // ---> Generate
@@ -378,9 +353,9 @@ const mapDispatchToProps = ( dispatch: ThunkDispatch<{}, {}, any> ) => {
         setCargoItems: ( cargoItems: Cargo[] ) => dispatch( setCargoItems( cargoItems ) ),
         setIsDragging: ( isDragging: boolean ) => dispatch( setIsDragging( isDragging ) ),
         addDockCargo: ( cargoItem: Cargo ) => dispatch( addDockCargo( cargoItem ) ),
-        removeDockCargo: ( id: string ) => dispatch( removeDockCargo( id ) ),
+        removeDockCargo: ( id: number ) => dispatch( removeDockCargo( id ) ),
         addShipCargo: ( id: string, cargoItem: Cargo ) => dispatch( addShipCargo( id, cargoItem ) ),
-        removeShipCargo: ( id: string, cargoId: string ) => dispatch( removeShipCargo( id, cargoId ) ),
+        removeShipCargo: ( id: string, cargoId: number ) => dispatch( removeShipCargo( id, cargoId ) ),
     }
 }
 

@@ -13,6 +13,6 @@ export const addShipCargo = ( shipId: string, cargoItem: Cargo ): ShipsActionTyp
     return { type: ADD_SHIP_CARGO, cargoItem, shipId }
 }
 
-export const removeShipCargo = ( shipId: string, cargoId: string ): ShipsActionTypes => {
+export const removeShipCargo = ( shipId: string, cargoId: number ): ShipsActionTypes => {
     return { type: REMOVE_SHIP_CARGO, cargoId, shipId }
 }

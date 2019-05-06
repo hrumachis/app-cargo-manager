@@ -14,7 +14,7 @@ export function setCargoItems( cargoItems: Cargo[] ): DockActionTypes {
     }
 }
 
-export function removeDockCargo( id: string ): DockActionTypes {
+export function removeDockCargo( id: number ): DockActionTypes {
     return {
         type: REMOVE_DOCK_CARGO,
         id: id

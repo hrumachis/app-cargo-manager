@@ -1,5 +1,5 @@
 export interface Cargo {
-    id: string,
+    id: number,
     weight: number, // Kilogrammes
     volume: number
 }
@@ -24,7 +24,7 @@ interface SetCargoItemsAction {
 export const REMOVE_DOCK_CARGO= 'REMOVE_DOCK_CARGO'
 interface RemoveCargoItemAction {
     type: typeof REMOVE_DOCK_CARGO
-    id: string
+    id: number
 }
 
 export type DockActionTypes = UpdateSessionAction | SetCargoItemsAction | RemoveCargoItemAction

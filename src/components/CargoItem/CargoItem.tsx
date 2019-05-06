@@ -14,7 +14,7 @@ import SVG_draggable from '../../assets/draggable.svg';
 import PNG_dragpreview from '../../assets/drag-preview.png';
 
 export interface OwnProps {
-    id: string,
+    id: number,
     type: string
     volume: number,
     weight: number

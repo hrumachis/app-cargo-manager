@@ -159,9 +159,9 @@ const mapDispatchToProps = ( dispatch: ThunkDispatch<{}, {}, any> ) => {
         setActiveShip: ( id: string ) => dispatch( setActiveShip( id ) ),
         setIsDragging: ( isDragging: boolean ) => dispatch( setIsDragging( isDragging ) ),
         addDockCargo: ( cargoItem: Cargo ) => dispatch( addDockCargo( cargoItem ) ),
-        removeDockCargo: ( id: string ) => dispatch( removeDockCargo( id ) ),
+        removeDockCargo: ( id: number ) => dispatch( removeDockCargo( id ) ),
         addShipCargo: ( id: string, cargoItem: Cargo ) => dispatch( addShipCargo( id, cargoItem ) ),
-        removeShipCargo: ( id: string, cargoId: string ) => dispatch( removeShipCargo( id, cargoId ) ),
+        removeShipCargo: ( id: string, cargoId: number ) => dispatch( removeShipCargo( id, cargoId ) ),
     }
 }
 

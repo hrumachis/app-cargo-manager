@@ -41,7 +41,7 @@ class ShipContainer extends React.Component<Props> {
     }
 
     // --> Cargo item
-    public renderCargoItem( id: string, volume: number, weight: number, index: number ) {
+    public renderCargoItem( id: number, volume: number, weight: number, index: number ) {
         return <AppCargoItem type={ CargoTypes.SHIP } id={ id } volume={ volume} weight={ weight } key={ "s-"+id } ></AppCargoItem>
     }
 
