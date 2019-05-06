@@ -216,10 +216,11 @@ class App extends React.Component<ReduxProps, State> {
         if ( !ship) return false;
 
         if ( !this.isErrorShip( ship, cargoItem) ) {
-            this.props.setIsDragging( false );
             this.props.removeDockCargo( item.id );
             this.props.addShipCargo( this.props.activeShipId, cargoItem )
         }
+
+        this.props.setIsDragging( false );
     }
 
     public handleDockDrop( item: any ) {
@@ -230,20 +231,51 @@ class App extends React.Component<ReduxProps, State> {
             cargoItem = ship.cargoItems.find( ( cargo ) => { return cargo.id === item.id; } );
 
         if ( cargoItem ) {
-            this.props.setIsDragging( false );
             this.props.removeShipCargo( this.props.activeShipId, item.id )
             this.props.addDockCargo( cargoItem )
         }
+
+        this.props.setIsDragging( false );
     }
 
     // ---> Api requests
     // Get init data
-    public getInitData( userGuid: string ) {
+    public async getInitData( userGuid: string ) {
         const url = 'http://demos.dev.flinkefolk.lt/Home/GetInitData/userGuid=' + userGuid;
 
-        fetch( url, {
-            headers: { 'Content-Type': 'application/json' }
-        } )
+        let request = await fetch( url, {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify( {
+                'userGuid': userGuid
+            } )
+        } );
+
+        console.log ( request )
+        if ( request.ok )
+            request.json().then( res => {
+                console.log( res )
+
+                this.props.setShipList( res.ships );
+                this.props.setCargoItems( res.dock.cargoItems );
+
+                this.setState( {
+                    isReady: true
+                } );
+            } )
+        else {
+            if ( request.status === 401 ) {
+                // Check API_KEY and try again
+                console.log( "Credentials error, checking API_KEY and trying again");
+                console.log( userGuid.length > 0  )
+
+                if ( userGuid.length > 0 )
+                    this.getInitData( userGuid );
+            }
+        }
+
+            /* GENERATE MOCK
+            
             .then( res => res )
             .then( ( result ) => {
                     let res: any;
@@ -274,7 +306,7 @@ class App extends React.Component<ReduxProps, State> {
                 }, ( error ) => {
                     // Try again
                     this.getInitData( userGuid );
-            } );
+            } );*/
     }
 
     // ---> Generate

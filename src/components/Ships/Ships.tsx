@@ -136,12 +136,11 @@ class Ships extends React.Component<ReduxProps> {
         let cargoItem = this.props.cargoItems[ cargoIndex ];
         
         if ( !this.isError( ship, cargoItem ) ) {
-            this.props.setIsDragging( false );
             this.props.removeDockCargo( item.id );
             this.props.addShipCargo( this.props.shipList[ index ].id, cargoItem )
-        } else {
-            console.log( "Cant load this cargo" );
-        }
+        } 
+
+        this.props.setIsDragging( false );
     }
     
 }
